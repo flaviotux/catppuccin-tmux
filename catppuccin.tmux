@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# title      Catppuccin                                                +
-# version    2.0.0                                                     +
-# repository https://github.com/flaviotux/catppuccin-tmux              +
+# title      Catppuccin                                               +
+# version    2.0.0                                                    +
+# repository https://github.com/flaviotux/catppuccin-tmux             +
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -13,7 +13,7 @@ source $SCRIPTS_PATH/themes.sh
 tmux set -g status-left-length 80
 tmux set -g status-right-length 150
 
-RESET="#[fg=${THEME[text]},bg=${THEME[base]},nobold,noitalics,nounderscore,nodim]"
+RESET="#[fg=${THEME[text]},bg=${THEME[mantle]},nobold,noitalics,nounderscore,nodim]"
 # Highlight colors
 tmux set -g mode-style "fg=${THEME[teal]},bg=${THEME[surface0]}"
 
@@ -24,7 +24,7 @@ tmux set -g pane-border-style "fg=${THEME[surface0]}"
 tmux set -g pane-active-border-style "fg=${THEME[blue]}"
 tmux set -g pane-border-status off
 
-tmux set -g status-style bg="${THEME[base]}"
+tmux set -g status-style bg="${THEME[mantle]}"
 tmux set -g popup-border-style "fg=${THEME[blue]}"
 
 TMUX_VARS="$(tmux show -g)"
@@ -33,8 +33,8 @@ default_window_id_style="digital"
 default_pane_id_style="hsquare"
 default_zoom_id_style="dsquare"
 
-default_terminal_icon=""
-default_active_terminal_icon=""
+default_terminal_icon=""
+default_active_terminal_icon=""
 
 window_id_style="$(echo "$TMUX_VARS" | grep '@catppuccin_window_id_style' | cut -d" " -f2)"
 pane_id_style="$(echo "$TMUX_VARS" | grep '@catppuccin_pane_id_style' | cut -d" " -f2)"
@@ -66,13 +66,13 @@ hostname="#($SCRIPTS_PATH/hostname-widget.sh)"
 
 #+--- Bars LEFT ---+
 # Session name
-tmux set -g status-left "#[fg=${THEME[surface0]},bg=${THEME[blue]},bold] #{?client_prefix,󰠠 ,#[dim]󰤂 }#[bold,nodim]#S$hostname "
+tmux set -g status-left "#[fg=${THEME[base]},bg=${THEME[blue]},bold] #{?client_prefix,󰠠 ,#[dim]󰤂 }#[bold,nodim]#S$hostname "
 
 #+--- Windows ---+
 # Focus
-tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[surface0]}] #{?#{==:#{pane_current_command},ssh},󰣀 ,  }#[fg=${THEME[text]},bold,nodim]$window_number#W#[nobold]#{?window_zoomed_flag, $zoom_number, $custom_pane}#{?window_last_flag, , }"
+tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[surface0]}] #{?#{==:#{pane_current_command},ssh},󰣀 ,$active_terminal_icon  }#[fg=${THEME[text]},bold,nodim]$window_number#W#[nobold]#{?window_zoomed_flag, $zoom_number, $custom_pane}#{?window_last_flag, , }"
 # Unfocused
-tmux set -g window-status-format "$RESET#[fg=${THEME[text]}] #{?#{==:#{pane_current_command},ssh},󰣀 ,  }${RESET}$window_number#W#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $custom_pane}#[fg=${THEME[yellow]}]#{?window_last_flag,󰁯  , }"
+tmux set -g window-status-format "$RESET#[fg=${THEME[text]}] #{?#{==:#{pane_current_command},ssh},󰣀 ,$terminal_icon  }${RESET}$window_number#W#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $custom_pane}#[fg=${THEME[yellow]}]#{?window_last_flag,󰁯  , }"
 
 #+--- Bars RIGHT ---+
 tmux set -g status-right "$battery_status$current_path$cmus_status$netspeed$git_status$wb_git_status$date_and_time"
