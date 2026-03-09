@@ -12,7 +12,8 @@ flavor="${SELECTED_THEME:-mocha}"
 declare -A THEME
 while IFS='=' read -r key value; do
   THEME["$key"]="$value"
-done < <(python3 - "$flavor" "$PALETTE_JSON" <<'EOF'
+done < <(
+  python3 - "$flavor" "$PALETTE_JSON" <<'EOF'
 import json, sys
 
 flavor = sys.argv[1]
