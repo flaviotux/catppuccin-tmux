@@ -37,19 +37,19 @@ fi
 UNTRACKED_COUNT="$(git ls-files --other --exclude-standard | wc -l | bc)"
 
 if [[ $CHANGED_COUNT -gt 0 ]]; then
-  STATUS_CHANGED="${RESET}#[fg=${THEME[yellow]},bg=${THEME[base]},bold] ${CHANGED_COUNT} "
+  STATUS_CHANGED="${RESET}#[fg=${THEME[yellow]},bg=${THEME[base]},bold] ${CHANGED_COUNT} "
 fi
 
 if [[ $INSERTIONS_COUNT -gt 0 ]]; then
-  STATUS_INSERTIONS="${RESET}#[fg=${THEME[green]},bg=${THEME[base]},bold] ${INSERTIONS_COUNT} "
+  STATUS_INSERTIONS="${RESET}#[fg=${THEME[green]},bg=${THEME[base]},bold] ${INSERTIONS_COUNT} "
 fi
 
 if [[ $DELETIONS_COUNT -gt 0 ]]; then
-  STATUS_DELETIONS="${RESET}#[fg=${THEME[red]},bg=${THEME[base]},bold] ${DELETIONS_COUNT} "
+  STATUS_DELETIONS="${RESET}#[fg=${THEME[red]},bg=${THEME[base]},bold] ${DELETIONS_COUNT} "
 fi
 
 if [[ $UNTRACKED_COUNT -gt 0 ]]; then
-  STATUS_UNTRACKED="${RESET}#[fg=${THEME[surface1]},bg=${THEME[base]},bold] ${UNTRACKED_COUNT} "
+  STATUS_UNTRACKED="${RESET}#[fg=${THEME[surface1]},bg=${THEME[base]},bold] ${UNTRACKED_COUNT} "
 fi
 
 # Determine repository sync status
