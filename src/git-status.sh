@@ -9,7 +9,6 @@ source "$CURRENT_DIR/../lib/coreutils-compat.sh"
 source "$CURRENT_DIR/themes.sh"
 
 cd "$1" || exit 1
-RESET="#[fg=${THEME[text]},bg=${THEME[base]},nobold,noitalics,nounderscore,nodim]"
 BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 STATUS=$(git status --porcelain 2>/dev/null | grep -cE "^(M| M)")
 
@@ -37,19 +36,19 @@ fi
 UNTRACKED_COUNT="$(git ls-files --other --exclude-standard | wc -l | bc)"
 
 if [[ $CHANGED_COUNT -gt 0 ]]; then
-  STATUS_CHANGED="${RESET}#[fg=${THEME[yellow]},bg=${THEME[base]},bold] ${CHANGED_COUNT} "
+  STATUS_CHANGED="${RESET}#[fg=${THEME[yellow]}},bold] ${CHANGED_COUNT} "
 fi
 
 if [[ $INSERTIONS_COUNT -gt 0 ]]; then
-  STATUS_INSERTIONS="${RESET}#[fg=${THEME[green]},bg=${THEME[base]},bold] ${INSERTIONS_COUNT} "
+  STATUS_INSERTIONS="${RESET}#[fg=${THEME[green]}},bold] ${INSERTIONS_COUNT} "
 fi
 
 if [[ $DELETIONS_COUNT -gt 0 ]]; then
-  STATUS_DELETIONS="${RESET}#[fg=${THEME[red]},bg=${THEME[base]},bold] ${DELETIONS_COUNT} "
+  STATUS_DELETIONS="${RESET}#[fg=${THEME[red]}},bold] ${DELETIONS_COUNT} "
 fi
 
 if [[ $UNTRACKED_COUNT -gt 0 ]]; then
-  STATUS_UNTRACKED="${RESET}#[fg=${THEME[surface1]},bg=${THEME[base]},bold] ${UNTRACKED_COUNT} "
+  STATUS_UNTRACKED="${RESET}#[fg=${THEME[surface1]}},bold] ${UNTRACKED_COUNT} "
 fi
 
 # Determine repository sync status
@@ -77,16 +76,16 @@ fi
 # Set the status indicator based on the sync mode
 case "$SYNC_MODE" in
 1)
-  REMOTE_STATUS="$RESET#[bg=${THEME[base]},fg=${THEME[peach]},bold]▒ 󱓎"
+  REMOTE_STATUS="$RESET#[fg=${THEME[peach]},bold]▒ 󱓎"
   ;;
 2)
-  REMOTE_STATUS="$RESET#[bg=${THEME[base]},fg=${THEME[red]},bold]▒ 󰛃"
+  REMOTE_STATUS="$RESET#[fg=${THEME[red]},bold]▒ 󰛃"
   ;;
 3)
-  REMOTE_STATUS="$RESET#[bg=${THEME[base]},fg=${THEME[mauve]},bold]▒ 󰛀"
+  REMOTE_STATUS="$RESET#[fg=${THEME[mauve]},bold]▒ 󰛀"
   ;;
 *)
-  REMOTE_STATUS="$RESET#[bg=${THEME[base]},fg=${THEME[green]},bold]▒ "
+  REMOTE_STATUS="$RESET#[fg=${THEME[green]},bold]▒ "
   ;;
 esac
 

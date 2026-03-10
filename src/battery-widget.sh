@@ -14,7 +14,6 @@ source "$CURRENT_DIR/themes.sh"
 # Get values from tmux config or set defaults
 BATTERY_NAME=$(tmux show-option -gv @catppuccin_battery_name 2>/dev/null)
 BATTERY_LOW=$(tmux show-option -gv @catppuccin_battery_low_threshold 2>/dev/null)
-RESET="#[fg=${THEME[text]},bg=${THEME[base]},nobold,noitalics,nounderscore,nodim]"
 
 DISCHARGING_ICONS=("󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹")
 CHARGING_ICONS=("󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅")

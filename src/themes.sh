@@ -135,4 +135,4 @@ if [ "${TRANSPARENT_THEME}" == 1 ]; then
   THEME["base"]="default"
 fi
 
-RESET="#[fg=${THEME[text]},bg=${THEME[base]},nobold,noitalics,nounderscore,nodim]"
+RESET="#[fg=${THEME[text]},bg=${THEME[mantle]},nobold,noitalics,nounderscore,nodim]"

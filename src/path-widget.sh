@@ -12,7 +12,6 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$CURRENT_DIR/themes.sh"
 
 PATH_FORMAT=$(tmux show-option -gv @catppuccin_path_format 2>/dev/null) # full | relative
-RESET="#[fg=${THEME[text]},bg=${THEME[base]},nobold,noitalics,nounderscore,nodim]"
 
 current_path="${1}"
 default_path_format="relative"
