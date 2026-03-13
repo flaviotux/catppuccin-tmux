@@ -32,11 +32,11 @@ if [[ $PROVIDER == "github.com" ]]; then
     exit 1
   fi
   PROVIDER_ICON="$RESET#[fg=${THEME[text]}] "
-  PR_COUNT=$(gh pr list --json number --jq 'length' | bc)
-  REVIEW_COUNT=$(gh pr status --json reviewRequests --jq '.needsReview | length' | bc)
-  RES=$(gh issue list --json "assignees,labels" --assignee @me)
-  ISSUE_COUNT=$(echo "$RES" | jq 'length' | bc)
-  BUG_COUNT=$(echo "$RES" | jq 'map(select(.labels[].name == "bug")) | length' | bc)
+  PR_COUNT=$(gh pr list --state open --search "involves:@me" --json number --jq 'length' 2>/dev/null || echo 0)
+  REVIEW_COUNT=$(gh pr status --json reviewRequests --jq '.needsReview | length' 2>/dev/null || echo 0)
+  RES=$(gh issue list --state open --assignee @me --json "assignees,labels" 2>/dev/null || echo "[]")
+  BUG_COUNT=$(echo "$RES" | jq 'map(select(.labels[].name == "bug")) | length' 2>/dev/null || echo 0)
+  ISSUE_COUNT=$(echo "$RES" | jq 'length' 2>/dev/null || echo 0)
   ISSUE_COUNT=$((ISSUE_COUNT - BUG_COUNT))
 elif [[ $PROVIDER == "gitlab.com" ]]; then
   if ! command -v glab &>/dev/null; then
