@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Check if enabled
-ENABLED=$(tmux show-option -gv @catppuccin_show_git)
+ENABLED=$(tmux show-option -gv @tokyo-night-tmux_show_git)
 [[ ${ENABLED} -ne 1 ]] && exit 0
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -36,19 +36,19 @@ fi
 UNTRACKED_COUNT="$(git ls-files --other --exclude-standard | wc -l | bc)"
 
 if [[ $CHANGED_COUNT -gt 0 ]]; then
-  STATUS_CHANGED="${RESET}#[fg=${THEME[yellow]}},bold] ${CHANGED_COUNT} "
+  STATUS_CHANGED="${RESET}#[fg=${THEME[yellow]},bg=${THEME[mantle]},bold] ${CHANGED_COUNT} "
 fi
 
 if [[ $INSERTIONS_COUNT -gt 0 ]]; then
-  STATUS_INSERTIONS="${RESET}#[fg=${THEME[green]}},bold] ${INSERTIONS_COUNT} "
+  STATUS_INSERTIONS="${RESET}#[fg=${THEME[green]},bg=${THEME[mantle]},bold] ${INSERTIONS_COUNT} "
 fi
 
 if [[ $DELETIONS_COUNT -gt 0 ]]; then
-  STATUS_DELETIONS="${RESET}#[fg=${THEME[red]}},bold] ${DELETIONS_COUNT} "
+  STATUS_DELETIONS="${RESET}#[fg=${THEME[red]},bg=${THEME[mantle]},bold] ${DELETIONS_COUNT} "
 fi
 
 if [[ $UNTRACKED_COUNT -gt 0 ]]; then
-  STATUS_UNTRACKED="${RESET}#[fg=${THEME[surface1]}},bold] ${UNTRACKED_COUNT} "
+  STATUS_UNTRACKED="${RESET}#[fg=${THEME[black]},bg=${THEME[mantle]},bold] ${UNTRACKED_COUNT} "
 fi
 
 # Determine repository sync status
@@ -76,16 +76,16 @@ fi
 # Set the status indicator based on the sync mode
 case "$SYNC_MODE" in
 1)
-  REMOTE_STATUS="$RESET#[fg=${THEME[peach]},bold]▒ 󱓎"
+  REMOTE_STATUS="$RESET#[bg=${THEME[mantle]},fg=${THEME[peach]},bold]▒ 󱓎"
   ;;
 2)
-  REMOTE_STATUS="$RESET#[fg=${THEME[red]},bold]▒ 󰛃"
+  REMOTE_STATUS="$RESET#[bg=${THEME[mantle]},fg=${THEME[red]},bold]▒ 󰛃"
   ;;
 3)
-  REMOTE_STATUS="$RESET#[fg=${THEME[mauve]},bold]▒ 󰛀"
+  REMOTE_STATUS="$RESET#[bg=${THEME[mantle]},fg=${THEME[mauve]},bold]▒ 󰛀"
   ;;
 *)
-  REMOTE_STATUS="$RESET#[fg=${THEME[green]},bold]▒ "
+  REMOTE_STATUS="$RESET#[bg=${THEME[mantle]},fg=${THEME[green]},bold]▒ "
   ;;
 esac
 

@@ -61,7 +61,7 @@ if [ "${#OUTPUT}" -ge $MAX_TITLE_WIDTH ]; then
 fi
 
 if [ -z "$OUTPUT" ]; then
-  echo "$OUTPUT #[fg=${THEME[green]},bg=default]"
+  echo "$OUTPUT #[fg=${THEME[green]},bg=${THEME[mantle]}"
 else
   OUT=" $OUTPUT $TIME "
   ONLY_OUT=" $OUTPUT "
